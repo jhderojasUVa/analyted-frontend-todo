@@ -65,7 +65,7 @@ export default {
             this.reloadTodos();
         }
     },
-    components: { ListTodo, AddTodo, AddTodo }
+    components: { ListTodo, AddTodo }
 }
 </script>
 
