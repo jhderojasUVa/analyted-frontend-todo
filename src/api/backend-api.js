@@ -7,19 +7,12 @@ const isFalse = 0;
 // base configure
 const axiosInstance = axios.create();
 
-axiosInstance.defaults = {
-    ...axios.defaults,
-    baseURL: 'http://localhost:8080',
-    timeout: 5000,
-}
-
 // get all todos
 const getAllTodo = async () => {
-    console.log('CACACA')
     try {
-        return (await axiosInstance.get({
-            url: '/',
-            method: 'GET'
+        return (await axiosInstance({
+            url: 'http://localhost:8080',
+            method: 'get',
         }));
     } catch (err) {
         return {
@@ -31,9 +24,9 @@ const getAllTodo = async () => {
 
 const getOneTodo = async (id) => {
     try {
-        return (await axiosInstance.get({
-            url: `/${id}`,
-            method: 'GET'
+        return (await axiosInstance({
+            url: `http://localhost:8080/${id}`,
+            method: 'get',
         }));
     } catch (err) {
         return {
@@ -46,8 +39,9 @@ const getOneTodo = async (id) => {
 // adds a new todo
 const addNewTodo = async (description) => {
     try {
-        return (await axiosInstance.post({
-            url: '/',
+        return (await axiosInstance({
+            url: 'http://localhost:8080/',
+            method: 'post',
             data: {
                 description,
                 completed: isFalse,
@@ -64,11 +58,9 @@ const addNewTodo = async (description) => {
 // remove a todo
 const removeTodo = async (id) => {
     try {
-        return (await axiosInstance.delete({
-            url: '/',
-            data: {
-                id,
-            }
+        return (await axiosInstance({
+            url: `http://localhost:8080/${id}`,
+            method: 'delete',
         }));
     } catch (err) {
         return {
@@ -83,8 +75,9 @@ const removeTodo = async (id) => {
 // always deconstruct the object for easy use
 const changeTodo = async ({ id = '', description = '', completed = isFalse } = {}) => {
     try {
-        return (await axiosInstance.put({
-            url: `/${id}`,
+        return (await axiosInstance({
+            url: `http://localhost:8080/${id}`,
+            method: 'put',
             data: {
                 id,
                 description,
