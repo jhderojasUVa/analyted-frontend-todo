@@ -69,4 +69,8 @@ export default {
     span.actions {
         float: right;
     }
+    
+    span.actions a {
+        cursor: pointer;
+    }
 </style>

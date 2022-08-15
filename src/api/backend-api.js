@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-// base data for API
-const isTrue = 1;
-const isFalse = 0;
-
 // base configure
 const axiosInstance = axios.create();
 
@@ -39,12 +35,21 @@ const getOneTodo = async (id) => {
 // adds a new todo
 const addNewTodo = async (description) => {
     try {
+        const kaka = (await axiosInstance({
+            url: 'http://localhost:8080/',
+            method: 'post',
+            data: {
+                description,
+                completed: false,
+            }
+        }))
+        console.log(kaka)
         return (await axiosInstance({
             url: 'http://localhost:8080/',
             method: 'post',
             data: {
                 description,
-                completed: isFalse,
+                completed: false,
             }
         }));
     } catch (err) {
@@ -73,17 +78,16 @@ const removeTodo = async (id) => {
 // change a todo
 // always pass an object, neves pass properties to a function/method
 // always deconstruct the object for easy use
-const changeTodo = async ({ id = '', description = '', completed = isFalse } = {}) => {
+const changeTodo = async ({ id = '', description = '', completed = false } = {}) => {
     try {
         return (await axiosInstance({
             url: `http://localhost:8080/${id}`,
             method: 'put',
             data: {
-                id,
                 description,
                 completed,
             }
-        }))
+        }));
     } catch (err) {
         return {
             sucess: false,
