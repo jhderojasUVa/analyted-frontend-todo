@@ -15,4 +15,7 @@ describe('Principal', () => {
 
         expect(wrapper).toMatchSnapshot();
     });
+    describe.skip('methods', () => {
+
+    });
 })

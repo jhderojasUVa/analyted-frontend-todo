@@ -1,18 +1,12 @@
 import axios from 'axios';
 
-// base configure
-const axiosInstance = axios.create();
-
 // get all todos
 const getAllTodo = async () => {
     try {
-        return (await axiosInstance({
-            url: 'http://localhost:8080',
-            method: 'get',
-        }));
+        return (await axios.get('http://localhost:8080'));
     } catch (err) {
         return {
-            sucess: false,
+            success: false,
             error: err,
         }
     }
@@ -20,13 +14,10 @@ const getAllTodo = async () => {
 
 const getOneTodo = async (id) => {
     try {
-        return (await axiosInstance({
-            url: `http://localhost:8080/${id}`,
-            method: 'get',
-        }));
+        return (await axios.get(`http://localhost:8080/${id}`));
     } catch (err) {
         return {
-            sucess: false,
+            success: false,
             error: err,
         };
     }
@@ -35,17 +26,13 @@ const getOneTodo = async (id) => {
 // adds a new todo
 const addNewTodo = async (description) => {
     try {
-        return (await axiosInstance({
-            url: 'http://localhost:8080/',
-            method: 'post',
-            data: {
+        return (await axios.post('http://localhost:8080/', {
                 description,
                 completed: false,
-            }
-        }));
+            }));
     } catch (err) {
         return {
-            sucess: false,
+            success: false,
             error: err,
         };
     }
@@ -54,13 +41,10 @@ const addNewTodo = async (description) => {
 // remove a todo
 const removeTodo = async (id) => {
     try {
-        return (await axiosInstance({
-            url: `http://localhost:8080/${id}`,
-            method: 'delete',
-        }));
+        return (await axios.delete(`http://localhost:8080/${id}`));
     } catch (err) {
         return {
-            sucess: false,
+            success: false,
             error: err,
         };
     }
@@ -71,17 +55,13 @@ const removeTodo = async (id) => {
 // always deconstruct the object for easy use
 const changeTodo = async ({ id = '', description = '', completed = false } = {}) => {
     try {
-        return (await axiosInstance({
-            url: `http://localhost:8080/${id}`,
-            method: 'put',
-            data: {
+        return (await axios.put(`http://localhost:8080/${id}`, {
                 description,
                 completed,
-            }
-        }));
+            }));
     } catch (err) {
         return {
-            sucess: false,
+            success: false,
             error: err,
         };
     }
