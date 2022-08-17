@@ -78,7 +78,7 @@ export default {
         <p v-if="!success" class="error">Sorry. There was an error!</p>
         <p v-else>
             <AddTodo @addTodo="addTodo"/>
-            <ListTodo :todoItems="todoItems" @deleteTodo="deleteTodo" @descriptionChanged="changeTodo"/>
+            <ListTodo :todoItems="todoItems" @deleteTodo="deleteTodo" @descriptionChanged="changeTodo" @changeCompleted="changeTodo" />
         </p>
     </div>
 </template>
