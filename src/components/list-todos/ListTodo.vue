@@ -6,11 +6,6 @@ export default {
     props: {
         todoItems: Array
     },
-    watch: {
-        todoItems: (newVal, oldVal) => {
-            console.log(newVal);
-        }
-    },
     methods: {
         deleteTodo(id) {
             // pass to parent
@@ -19,19 +14,23 @@ export default {
         descriptionChanged(data) {
             // pass to parent
             this.$emit('descriptionChanged', data);
+        },
+        changeCompleted(data) {
+            // pass to parent
+            this.$emit('changeCompleted', data);
         }
     },
     components: { 
         TodoItem 
     },
-    emits: [ 'deleteTodo', 'descriptionChanged' ]
+    emits: [ 'deleteTodo', 'descriptionChanged', 'changeCompleted' ]
 }
 </script>
 
 <template>
     <ul>
         <li v-for="item in todoItems">
-         <TodoItem :data="item" @deleteTodo="deleteTodo" @descriptionChanged="descriptionChanged"/>
+         <TodoItem :data="item" @deleteTodo="deleteTodo" @descriptionChanged="descriptionChanged" @changeCompleted="changeCompleted" />
         </li>
     </ul>
 </template>

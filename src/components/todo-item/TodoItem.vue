@@ -26,9 +26,17 @@ export default {
                 id: this.data.id, 
             });
             this.editing = false;
+        },
+        changeComplete() {
+            this.data.completed = this.data.completed === false ? true : false;
+            this.$emit('changeCompleted', {
+                description: this.data.description,
+                completed: this.data.completed,
+                id: this.data.id,
+            });
         }
     },
-    emits: [ 'deleteTodo', 'descriptionChanged' ],
+    emits: [ 'deleteTodo', 'descriptionChanged', 'changeCompleted' ],
     components: {
         InlineEditing,
     }
@@ -39,8 +47,8 @@ export default {
     <span class="name" v-if="!editing" @click="editItem">{{ data.description }}</span>
     <span class="name" v-else><InlineEditing :data="data.description" @descriptionChanged="descriptionChanged"/></span>
     <span class="completed">
-        <span v-if="data.completed" class="completed">Finished</span>
-        <span v-else class="notcompleted">Not finished</span>
+        <span v-if="data.completed" class="completed" @click="changeComplete">Finished</span>
+        <span v-else class="notcompleted" @click="changeComplete">Not finished</span>
     </span>
     <span class="actions"><a @click="deleteTodo(data.id)">Delete</a></span>
 </template>

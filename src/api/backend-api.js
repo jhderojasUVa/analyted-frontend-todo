@@ -71,17 +71,6 @@ const removeTodo = async (id) => {
 // always deconstruct the object for easy use
 const changeTodo = async ({ id = '', description = '', completed = false } = {}) => {
     try {
-        console.log({ id, description, completed })
-        const kaka = (await axiosInstance({
-            url: `http://localhost:8080/${id}`,
-            method: 'put',
-            data: {
-                description,
-                completed,
-            }
-        }));
-
-        console.log(kaka)
         return (await axiosInstance({
             url: `http://localhost:8080/${id}`,
             method: 'put',

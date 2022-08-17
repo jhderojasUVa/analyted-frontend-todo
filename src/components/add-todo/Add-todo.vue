@@ -5,10 +5,10 @@ export default {
         return {
             description: "",
         }
-    },
+    }, 
     methods: {
         add() {
-            if (this.descrpition !== "") {
+            if (this.descrpition) {
                 // emit the description to parent
                 this.$emit('addTodo', this.description);
             }
