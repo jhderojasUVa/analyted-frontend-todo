@@ -8,10 +8,13 @@
     "test:unit": "vitest --environment jsdom --config ./vittest.config.ts",
     "prepare": "husky install",
     "pre-commit": "lint-staged --relative",
-    "release": "standard-version"
+    "release": "standard-version",
+    "docker:compose": "docker compose up"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "g": "^2.0.1",
+    "http-server": "^14.1.1",
     "vue": "^3.2.37"
   },
   "devDependencies": {
