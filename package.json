@@ -9,7 +9,7 @@
     "prepare": "husky install",
     "pre-commit": "lint-staged --relative",
     "release": "standard-version",
-    "docker:compose": "docker compose up"
+    "docker:compose": "docker compose -p todo-application up"
   },
   "dependencies": {
     "axios": "^0.27.2",

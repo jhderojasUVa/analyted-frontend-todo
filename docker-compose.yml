@@ -1,6 +1,16 @@
 version: "3.9"
 services:
+  # Build backend container
+  backend:
+    build: ../analyted-backend-todo/
+    ports:
+      - "8080:8080"
+  # Build frontned container
   frontend:
     build: .
     ports:
       - "8090:8090"
+networks:
+  default:
+    name: analyted_network
+    external: true
