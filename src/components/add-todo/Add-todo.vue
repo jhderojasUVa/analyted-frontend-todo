@@ -8,7 +8,7 @@ export default {
     }, 
     methods: {
         add() {
-            if (this.descrpition) {
+            if (this.description) {
                 // emit the description to parent
                 this.$emit('addTodo', this.description);
             }
