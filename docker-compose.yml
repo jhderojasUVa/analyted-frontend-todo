@@ -1,20 +1,21 @@
 version: "3.9"
 services:
+  # Build database container
+  sqltodo:
+    build: ../analyted-database-todo/
+    ports:
+      - 1433:1433
   # Build backend container
   backend:
     build: ../analyted-backend-todo/
+    depends_on:
+      - sqltodo
     ports:
       - 8080:8080
   # Build frontned container
   frontend:
     build: .
+    depends_on:
+      - sqltodo
     ports:
       - 8090:8090
-  sqltodo:
-    build: ../analyted-database-todo/
-    ports:
-      - 1433:1433
-networks:
-  default:
-    name: analyted_network
-    external: true
