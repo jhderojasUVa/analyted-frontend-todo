@@ -4,12 +4,16 @@ services:
   backend:
     build: ../analyted-backend-todo/
     ports:
-      - "8080:8080"
+      - 8080:8080
   # Build frontned container
   frontend:
     build: .
     ports:
-      - "8090:8090"
+      - 8090:8090
+  sqltodo:
+    build: ../analyted-database-todo/
+    ports:
+      - 1433:1433
 networks:
   default:
     name: analyted_network
