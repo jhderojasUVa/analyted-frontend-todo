@@ -5,9 +5,15 @@ services:
     build: ../analyted-database-todo/
     ports:
       - 1433:1433
+      - 1431:1431
+      - 1434:1434
   # Build backend container
   backend:
     build: ../analyted-backend-todo/
+    environment:
+      - DB_HOST=sqltodo
+      - DB_USERNAME=sa
+      - DB_PASSWORD=yourStrong(!)Password
     depends_on:
       - sqltodo
     ports:
@@ -16,6 +22,6 @@ services:
   frontend:
     build: .
     depends_on:
-      - sqltodo
+      - backend
     ports:
       - 8090:8090
