@@ -7,6 +7,12 @@ services:
       - 1433:1433
       - 1431:1431
       - 1434:1434
+    healthcheck:
+      test: ["CMD", "/start/scripts/is_mssql_running.sh"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
   # Build backend container
   backend:
     build: ../analyted-backend-todo/
@@ -16,8 +22,11 @@ services:
       - DB_PASSWORD=yourStrong(!)Password
     depends_on:
       - sqltodo
+    links:
+      - sqltodo
     ports:
       - 8080:8080
+    restart: on-failure
   # Build frontned container
   frontend:
     build: .
